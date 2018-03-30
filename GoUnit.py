@@ -16,22 +16,25 @@ class gounitCommand(sublime_plugin.TextCommand):
 				return False
 		fn = self.view.file_name()
 		if fn and fn.endswith('.go') and not fn.endswith('_test.go'):
-			fs = []
+			lines = []
 			for s in self.view.sel():
 				line = self.function_line(s.begin())
-				i = line.begin()
-				while i <= s.end():
-					f = self.function_name(line)
-					i = line.end() + 1
-					line = self.view.line(i)
-					if not f:
-						continue
-					fs.append(f)
+				(row, col) = self.view.rowcol(line.begin())
+				print(row)
+				lines.append(str(row + 1))
 			try:
 				gounit = settings.get("gounit_cmd", "gounit")
-				cmd = [gounit, '-i', fn, '-f=(?i)^(' + ",".join(fs) + ')$']
-				proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-				print(proc.stdout.read().decode("utf-8").replace('\r\n', '\n'))
+				test_file = fn.replace('.go', '_test.go')
+				cmd = [gounit, '-i', fn, '-o',test_file, '-l', ",".join(lines)]
+
+				proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+				(output, err) = proc.communicate()
+				exit_code = proc.wait()
+				if exit_code != 0:
+				    sublime.message_dialog("GoUnit error ("+str(exit_code)+") " + " ".join(cmd) + "\n" + str(err))
+				    return False
+
+				self.view.window().open_file(test_file)
 			except OSError as e:
 				sublime.message_dialog("GoUnit error: " + str(e) + ".")
 				return False
