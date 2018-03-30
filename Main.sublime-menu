@@ -10,21 +10,21 @@
 				"children":
 				[
 					{
-						"caption": "GoTests",
+						"caption": "GoUnit",
 						"children":
 						[
 							{
 								"caption": "Settings – Default",
 								"command": "open_file",
 								"args": {
-									"file": "${packages}/GoTests-Sublime/GoTests.sublime-settings"
+									"file": "${packages}/GoUnit-Sublime/GoUnit.sublime-settings"
 								}
 							},
 							{
 								"caption": "Settings – User",
 								"command": "open_file",
 								"args": {
-									"file": "${packages}/User/GoTests.sublime-settings"
+									"file": "${packages}/User/GoUnit.sublime-settings"
 								}
 							},
 						],

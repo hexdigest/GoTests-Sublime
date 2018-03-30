@@ -1,0 +1,6 @@
+{
+	// Add your GOPATH here.
+	"GOPATH": "",
+	// The gounit command to run.
+	"gounit_cmd": "gounit",
+}

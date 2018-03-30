@@ -1,7 +1,7 @@
 [
 	{
-	    "id" : "GoTests",
+	    "id" : "GoUnit",
 	    "caption" : "Generate Go tests",
-	    "command" : "gotests"
+	    "command" : "gounit"
 	}
 ]
