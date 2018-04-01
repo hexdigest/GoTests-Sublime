@@ -31,7 +31,7 @@ Finally, open `Preferences > Package Settings > GoUnit > Settings - User`. In th
 // GoUnit.sublime-settings
 {
 	// Add your GOPATH here.
-	"GOPATH": "/absolute/go/path/",
+	"GOPATH": "/absolute/go/path/"
 }
 ```
 
