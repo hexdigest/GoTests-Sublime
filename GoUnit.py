@@ -25,7 +25,7 @@ class gounitCommand(sublime_plugin.TextCommand):
 			try:
 				gounit = settings.get("gounit_cmd", "gounit")
 				test_file = fn.replace('.go', '_test.go')
-				cmd = [gounit, '-i', fn, '-o',test_file, '-l', ",".join(lines)]
+				cmd = [gounit, 'gen', '-i', fn, '-o',test_file, '-l', ",".join(lines)]
 
 				proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 				(output, err) = proc.communicate()
